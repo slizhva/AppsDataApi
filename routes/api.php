@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TranslationsApiController;
+use App\Http\Controllers\DataApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::match(['post', 'get'],'/translations/get/{app_id}/{token}', [TranslationsApiController::class, 'getTranslations'])->name('translations.get');
+Route::get('/data/get/{data_id}/{token}', [DataApiController::class, 'getData'])->name('data.get');

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Apps extends Model
+class Data extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Apps extends Model
      *
      * @var string
      */
-    protected $table = 'apps';
+    protected $table = 'data';
 
     /**
      * Fields that are mass assignable
@@ -24,5 +24,6 @@ class Apps extends Model
     protected $fillable = [
         'user',
         'name',
+        'value',
     ];
 }

@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apps', function (Blueprint $table) {
+        Schema::create('data', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user');
             $table->string('name');
+            $table->longText('value');
             $table->timestamps();
 
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
 
-            $table->index(['user']);
+            $table->index(['user', 'name']);
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apps');
+        Schema::dropIfExists('data');
     }
 };

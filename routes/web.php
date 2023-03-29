@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-use \App\Http\Controllers\AppsController;
+use \App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +22,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Apps
-Route::get('/dashboard', [AppsController::class, 'apps'])->name('dashboard');
-Route::get('/dashboard/apps', [AppsController::class, 'apps'])->name('dashboard.apps');
+// Data list
+Route::get('/dashboard', [DataController::class, 'data'])->name('dashboard');
+Route::get('/data', [DataController::class, 'data'])->name('data');
 
-// App
-Route::post('/dashboard/app/add', [AppsController::class, 'add'])->name('dashboard.app.add');
-Route::get('/dashboard/app/{app_id}', [AppsController::class, 'app'])->where('app_id', '[0-9]+')->name('dashboard.app');
-Route::post('/dashboard/app/{app_id}/delete', [AppsController::class, 'delete'])->where('app_id', '[0-9]+')->name('dashboard.app.delete');
+// Data item
+Route::post('/data/add', [DataController::class, 'add'])->name('data.add');
+Route::get('/data/{data_id}', [DataController::class, 'dataItem'])->where('data_id', '[0-9]+')->name('data.item');
+Route::post('/data/{data_id}/delete', [DataController::class, 'delete'])->where('data_id', '[0-9]+')->name('data.delete');
+Route::post('/data/{data_id}/value/update', [DataController::class, 'dataValueUpdate'])->where('data_id', '[0-9]+')->name('data.item.value.update');
