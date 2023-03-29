@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\TranslationsApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::match(['post', 'get'],'/translations/get/{app_id}/{token}', [TranslationsApiController::class, 'getTranslations'])->name('translations.get');
