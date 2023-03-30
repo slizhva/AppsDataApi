@@ -39,7 +39,7 @@ class DataController extends Controller
     {
         $user = Auth::user();
         if ($user['dangerous_actions_key'] !== $request->get('dangerous_actions_key')) {
-            return redirect()->route('dashboard.data')->with('error', 'Error: Wrong dangerous action key.');
+            return redirect()->route('data')->with('error', 'Error: Wrong dangerous action key.');
         }
 
         $data = Data
