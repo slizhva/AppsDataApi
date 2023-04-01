@@ -36,9 +36,21 @@ class DataApiController extends Controller
                 'message' => 'wrong data id',
             ]);
         }
+
+        $termsList = preg_split("/\r\n|\n|\r/", $data[0]['value']);
+        $resultTerms = [];
+        foreach ($termsList as $term) {
+            $explodedTerm = explode('|', $term);
+            if (!empty($explodedTerm[1])) {
+                $resultTerms[$explodedTerm[0]] = $explodedTerm[1];
+            } else {
+                $resultTerms[] = $term;
+            }
+        }
+
         return response()->json([
             'status' => true,
-            'value' => preg_split("/\r\n|\n|\r/", $data[0]['value'])
+            'value' => $resultTerms
         ]);
     }
 }
