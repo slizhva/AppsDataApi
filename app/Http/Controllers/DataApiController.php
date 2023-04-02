@@ -41,10 +41,14 @@ class DataApiController extends Controller
         $resultTerms = [];
         foreach ($termsList as $term) {
             $explodedTerm = explode('|', $term);
-            if (!empty($explodedTerm[1])) {
+            if (count($explodedTerm) === 1) {
+                $resultTerms[] = $term;
+            } elseif (count($explodedTerm) === 2) {
                 $resultTerms[$explodedTerm[0]] = $explodedTerm[1];
             } else {
-                $resultTerms[] = $term;
+                $key = $explodedTerm[0];
+                unset($explodedTerm[0]);
+                $resultTerms[$key] = $explodedTerm;
             }
         }
 
